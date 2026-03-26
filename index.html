@@ -294,6 +294,7 @@ let focusedIdx = -1;
 let isDragging = false, lastMX = 0;
 let focusedRotVel = 0, focusedAutoRot = true, focusedAutoTimer = null;
 let dragDist = 0;
+let switching = false;
 
 /* ═══════════════════════════════════════════
    THREE.JS SETUP
@@ -814,7 +815,7 @@ function zoomToPlanet(idx) {
   scaleStep();
 
   // Move camera — distance scales with planet size so all fill the frame consistently
-  const camDist = (1.0 / PLANETS[idx].size) * 3.0;
+  const camDist = (1.0 / PLANETS[idx].size) * 4.0;
   const fromPos = camera.position.clone();
   const fromTarget = new THREE.Vector3(worldPos.x, worldPos.y, worldPos.z);
   const toPos = new THREE.Vector3(0, camDist * 0.1, camDist);
@@ -953,7 +954,8 @@ function buildNav() {
 }
 
 function switchFocused(newIdx) {
-  if (newIdx === focusedIdx || MODE !== 'focused') return;
+  if (newIdx === focusedIdx || MODE !== 'focused' || switching) return;
+  switching = true;
   const oldPm = planetMeshes[focusedIdx];
   const newPm = planetMeshes[newIdx];
   const pData = PLANETS[newIdx];
@@ -985,6 +987,7 @@ function switchFocused(newIdx) {
       focusGlowMesh.scale.setScalar(newTargetScale);
       focusRingMesh.material.color.setHex(PLANETS[newIdx].atmHex);
       focusRingMesh.scale.setScalar(newTargetScale);
+      switching = false;
     }
   }
   newPm.group.position.set(0, 0, 0);
@@ -1129,13 +1132,14 @@ canvas.addEventListener('touchmove', e => {
   lastMX = e.touches[0].clientX;
 }, {passive:true});
 canvas.addEventListener('touchend', e => {
+  e.preventDefault(); // suppress synthetic mousedown/mouseup ghost events
   isDragging=false;
   const dx = e.changedTouches[0].clientX - tStartX;
   const absDx = Math.abs(dx);
   if (MODE==='focused') {
     focusedAutoTimer = setTimeout(() => { focusedAutoRot=true; }, 3500);
-    if (absDx>50) { if(dx<0) switchFocused((focusedIdx+1)%PLANETS.length); else switchFocused((focusedIdx-1+PLANETS.length)%PLANETS.length); }
-    else if (dragDist<12 && absDx<14) openPage(focusedIdx);
+    if (!switching && absDx>50) { if(dx<0) switchFocused((focusedIdx+1)%PLANETS.length); else switchFocused((focusedIdx-1+PLANETS.length)%PLANETS.length); }
+    else if (!switching && dragDist<12 && absDx<14) openPage(focusedIdx);
   }
   if (MODE==='solar' && dragDist<12 && absDx<14) {
     const touch = e.changedTouches[0];
