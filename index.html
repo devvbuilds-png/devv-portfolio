@@ -316,7 +316,7 @@ const _origin = new THREE.Vector3();
 function initThree() {
   const canvas = document.getElementById('c');
   renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:false});
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 3));
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setClearColor(0x00000a, 1);
   renderer.shadowMap.enabled = false;
@@ -403,7 +403,7 @@ function buildStarfield() {
 
 function buildSun() {
   // Core
-  const cGeo = new THREE.SphereGeometry(1.1, 32, 32);
+  const cGeo = new THREE.SphereGeometry(1.1, 48, 48);
   const cMat = new THREE.MeshStandardMaterial({
     color: 0xffe040, emissive: 0xff8800, emissiveIntensity: 2.2,
     roughness: 0.55, metalness: 0.0
@@ -412,7 +412,7 @@ function buildSun() {
   scene.add(sunCoreMesh);
 
   // Surface texture via displacement bumps
-  const sGeo = new THREE.SphereGeometry(1.14, 40, 40);
+  const sGeo = new THREE.SphereGeometry(1.14, 48, 48);
   const sMat = new THREE.MeshStandardMaterial({
     color: 0xffb800, emissive: 0xff5500, emissiveIntensity: 1.1,
     roughness: 1.0, metalness: 0.0, transparent: true, opacity: 0.65
@@ -455,7 +455,7 @@ function buildPlanets() {
     const group = new THREE.Group();
 
     // Core sphere
-    const geo = new THREE.SphereGeometry(1.0, 48, 48);
+    const geo = new THREE.SphereGeometry(1.0, 64, 64);
     const mat = new THREE.MeshStandardMaterial({
       color: p.bodyColor, emissive: p.emissive,
       emissiveIntensity: p.emissiveInt, roughness: p.roughness, metalness: 0.04
@@ -464,13 +464,13 @@ function buildPlanets() {
     group.add(core);
 
     // Atmosphere layers
-    const aGeo = new THREE.SphereGeometry(1.14, 24, 24);
+    const aGeo = new THREE.SphereGeometry(1.14, 32, 32);
     const aMat = new THREE.MeshStandardMaterial({
       color: p.atmHex, transparent:true, opacity: p.atmOpacity * 0.65,
       side: THREE.FrontSide, depthWrite: false
     });
     group.add(new THREE.Mesh(aGeo, aMat));
-    const aiGeo = new THREE.SphereGeometry(1.06, 24, 24);
+    const aiGeo = new THREE.SphereGeometry(1.06, 32, 32);
     const aiMat = new THREE.MeshStandardMaterial({
       color: p.atmHex, transparent:true, opacity: p.atmOpacity * 0.4,
       side: THREE.BackSide, depthWrite: false
@@ -587,7 +587,7 @@ function addSurface(group, core, p, idx) {
 
   if (idx === 2) { // Giant's Deep
     // Reflective ocean overlay
-    const oG = new THREE.SphereGeometry(1.01, 24, 24);
+    const oG = new THREE.SphereGeometry(1.01, 32, 32);
     const oM = new THREE.MeshStandardMaterial({color:0x0b3d7a, roughness:0.05, metalness:0.35, transparent:true, opacity:0.82});
     group.add(new THREE.Mesh(oG, oM));
     // Storm band rings
@@ -658,14 +658,14 @@ function addSurface(group, core, p, idx) {
       group.add(d);
     }
     // Outer ice skin
-    const skinG = new THREE.SphereGeometry(1.0, 24, 24);
+    const skinG = new THREE.SphereGeometry(1.0, 32, 32);
     const skinM = new THREE.MeshStandardMaterial({color:0xaaccee, roughness:0.12, metalness:0.2, transparent:true, opacity:0.35});
     group.add(new THREE.Mesh(skinG, skinM));
   }
 
   if (idx === 4) { // Ash Twin
     // Sandy surface overlay
-    const sandG = new THREE.SphereGeometry(1.005, 24, 24);
+    const sandG = new THREE.SphereGeometry(1.005, 32, 32);
     const sandM = new THREE.MeshStandardMaterial({color:0xc89030, roughness:1, metalness:0.0, transparent:true, opacity:0.6});
     group.add(new THREE.Mesh(sandG, sandM));
     // Ancient stone towers
