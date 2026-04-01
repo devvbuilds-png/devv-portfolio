@@ -641,24 +641,22 @@ html,body{width:100%;height:100%;background:#00000a;overflow:hidden;cursor:defau
   width:100%;
   max-width:1160px;
   margin:0 auto;
-  color:#e8f5ff;
+  color:#deeeff;
 }
 .skills-hero{
   position:relative;
-  overflow:hidden;
-  border:1px solid rgba(54,128,216,0.24);
-  border-radius:30px;
-  padding:30px;
+  border:1px solid rgba(126,197,255,0.14);
+  border-radius:28px;
+  padding:28px;
   background:
-    radial-gradient(circle at top left, rgba(54,128,216,0.16), transparent 34%),
-    radial-gradient(circle at 84% 16%, rgba(126,197,255,0.12), transparent 28%),
-    linear-gradient(150deg, rgba(2,10,20,0.97) 0%, rgba(5,21,42,0.95) 52%, rgba(2,8,18,0.98) 100%);
-  box-shadow:0 26px 64px rgba(0,0,0,0.28);
+    radial-gradient(circle at top left, rgba(126,197,255,0.08), transparent 34%),
+    linear-gradient(160deg, rgba(4,10,18,0.97) 0%, rgba(5,16,30,0.95) 56%, rgba(3,8,16,0.98) 100%);
+  box-shadow:0 20px 48px rgba(0,0,0,0.22);
 }
 .skills-grid{
   display:grid;
-  grid-template-columns:repeat(3, minmax(0, 1fr));
-  gap:18px;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:16px;
 }
 .skills-card-head{
   display:flex;
@@ -667,17 +665,230 @@ html,body{width:100%;height:100%;background:#00000a;overflow:hidden;cursor:defau
   gap:16px;
 }
 .skills-icon{
-  width:54px;
-  height:54px;
-  border-radius:18px;
+  width:48px;
+  height:48px;
+  border-radius:16px;
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  border:1px solid rgba(255,255,255,0.1);
-  background:rgba(126,197,255,0.08);
+  border:1px solid rgba(126,197,255,0.14);
+  background:rgba(126,197,255,0.05);
   font-family:'Space Grotesk',sans-serif;
-  font-size:18px;
-  color:#bfe2ff;
+  font-size:15px;
+  color:#c8e7ff;
+}
+.skills-kicker{
+  color:#8ecbff;
+}
+.skills-title{
+  color:#eef8ff;
+  max-width:720px;
+  font-size:clamp(28px, 4.2vw, 48px);
+}
+.skills-summary{
+  max-width:680px;
+  color:rgba(222,238,255,0.72);
+}
+.skills-pill{
+  border-color:rgba(126,197,255,0.14);
+  color:#c9e5ff;
+  background:rgba(255,255,255,0.03);
+}
+.skills-hero-grid{
+  align-items:start;
+}
+.skills-focus-card{
+  border-radius:22px;
+  border:1px solid rgba(126,197,255,0.12);
+  background:
+    linear-gradient(180deg, rgba(10,23,38,0.94) 0%, rgba(6,12,20,0.98) 100%);
+  padding:20px;
+}
+.skills-focus-title{
+  font-size:24px;
+  color:#eef8ff;
+}
+.skills-focus-copy{
+  color:rgba(222,238,255,0.74);
+}
+.skills-focus-item{
+  color:rgba(222,238,255,0.76);
+}
+.skills-focus-item strong{
+  color:#dcedff;
+}
+.skills-sections{
+  gap:20px;
+}
+.skills-section-head{
+  margin-bottom:14px;
+}
+.skills-section-label{
+  color:#87c6fb;
+}
+.skills-section-title{
+  color:#eef8ff;
+  font-size:24px;
+}
+.skills-section-note{
+  color:rgba(222,238,255,0.54);
+  max-width:360px;
+}
+.skills-card{
+  min-height:unset;
+  padding:20px;
+  border-radius:22px;
+  border:1px solid rgba(126,197,255,0.12);
+  background:linear-gradient(180deg, rgba(8,20,34,0.94) 0%, rgba(4,10,18,0.98) 100%);
+  box-shadow:none;
+}
+.skills-card::after{
+  background:radial-gradient(circle at top right, rgba(126,197,255,0.08), transparent 34%);
+}
+.skills-card-title{
+  font-size:21px;
+  color:#eef8ff;
+}
+.skills-card-copy{
+  color:rgba(222,238,255,0.7);
+}
+.skills-chip-row span{
+  border-color:rgba(126,197,255,0.12);
+  color:#c9e5ff;
+  background:rgba(255,255,255,0.03);
+}
+.skills-track{
+  display:grid;
+  gap:12px;
+}
+.skills-track-item{
+  display:grid;
+  grid-template-columns:140px minmax(0, 1fr);
+  gap:16px;
+  padding:16px 0;
+  border-top:1px solid rgba(126,197,255,0.12);
+}
+.skills-track-label{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#8ecbff;
+}
+.skills-track-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:22px;
+  line-height:1.08;
+  color:#eef8ff;
+}
+.skills-track-copy{
+  margin-top:8px;
+  font-family:'Inter',sans-serif;
+  font-size:14px;
+  line-height:1.8;
+  color:rgba(222,238,255,0.7);
+}
+.skills-track-tags{
+  margin-top:12px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.skills-track-tags span{
+  padding:7px 11px;
+  border-radius:999px;
+  border:1px solid rgba(126,197,255,0.12);
+  background:rgba(255,255,255,0.03);
+  font-family:'Space Grotesk',sans-serif;
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:#c9e5ff;
+}
+.skills-shell{
+  position:relative;
+  overflow:hidden;
+  border-radius:22px;
+  border:1px solid rgba(126,197,255,0.14);
+  background:
+    linear-gradient(180deg, rgba(8,18,30,0.98) 0%, rgba(4,10,18,1) 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.03);
+}
+.skills-shell::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(126,197,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(126,197,255,0.03) 1px, transparent 1px);
+  background-size:100% 28px, 28px 100%;
+  pointer-events:none;
+  opacity:0.35;
+}
+.skills-shell-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 16px;
+  border-bottom:1px solid rgba(126,197,255,0.1);
+  background:rgba(126,197,255,0.03);
+}
+.skills-shell-dots{
+  display:flex;
+  gap:7px;
+}
+.skills-shell-dot{
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  background:rgba(126,197,255,0.34);
+}
+.skills-shell-title{
+  font-family:'Fira Code',monospace;
+  font-size:11px;
+  color:rgba(205,231,255,0.78);
+}
+.skills-shell-body{
+  position:relative;
+  z-index:1;
+  padding:16px;
+  display:grid;
+  gap:14px;
+}
+.skills-shell-block{
+  display:grid;
+  gap:8px;
+}
+.skills-shell-line{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  font-family:'Fira Code',monospace;
+  font-size:12px;
+  line-height:1.7;
+}
+.skills-shell-prompt{
+  color:#77c8ff;
+  flex-shrink:0;
+}
+.skills-shell-command{
+  color:#eef8ff;
+}
+.skills-shell-output{
+  margin-left:22px;
+  display:grid;
+  gap:6px;
+}
+.skills-shell-output span{
+  font-family:'Fira Code',monospace;
+  font-size:12px;
+  line-height:1.7;
+  color:rgba(201,229,255,0.78);
+}
+.skills-shell-output strong{
+  color:#eef8ff;
+  font-weight:500;
 }
 .contact-hero{
   position:relative;
@@ -988,6 +1199,63 @@ html,body{width:100%;height:100%;background:#00000a;overflow:hidden;cursor:defau
 .contact-method-link::after{
   content:'↗';
   font-size:12px;
+}
+.contact-layout{
+  display:grid;
+  grid-template-columns:minmax(0, 1.45fr) minmax(280px, 0.82fr);
+  gap:18px;
+  align-items:start;
+}
+.contact-rail{
+  display:grid;
+  gap:18px;
+}
+.contact-quick-card{
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:linear-gradient(180deg, rgba(33,20,4,0.94) 0%, rgba(15,10,2,0.98) 100%);
+  padding:22px;
+}
+.contact-quick-list{
+  margin-top:14px;
+  display:grid;
+  gap:12px;
+}
+.contact-quick-item{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  padding:14px 16px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.03);
+  text-decoration:none;
+  transition:transform 0.25s, border-color 0.25s, background 0.25s;
+}
+.contact-quick-item:hover{
+  transform:translateY(-2px);
+  border-color:rgba(255,232,166,0.28);
+  background:rgba(255,224,144,0.08);
+}
+.contact-quick-label{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:10px;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:#f1c96d;
+}
+.contact-quick-value{
+  font-family:'Inter',sans-serif;
+  font-size:14px;
+  line-height:1.6;
+  color:#fff4d2;
+  word-break:break-word;
+}
+.contact-quick-meta{
+  font-family:'Inter',sans-serif;
+  font-size:12px;
+  line-height:1.6;
+  color:rgba(255,242,196,0.58);
 }
 .contact-availability{
   display:grid;
@@ -1432,6 +1700,7 @@ html,body{width:100%;height:100%;background:#00000a;overflow:hidden;cursor:defau
   .home-hero-grid,
   .skills-hero-grid,
   .contact-hero-grid,
+  .contact-layout,
   .contact-availability{
     grid-template-columns:1fr;
   }
@@ -1478,6 +1747,10 @@ html,body{width:100%;height:100%;background:#00000a;overflow:hidden;cursor:defau
   .contact-method{
     min-height:auto;
     padding:18px;
+  }
+  .skills-track-item{
+    grid-template-columns:1fr;
+    gap:10px;
   }
   .projects-hero{
     padding:22px 20px 20px;
@@ -1526,7 +1799,7 @@ html,body{width:100%;height:100%;background:#00000a;overflow:hidden;cursor:defau
 }
 #astro-widget.hidden{opacity:0;pointer-events:none}
 #astro-img{
-  width:108px;cursor:pointer;display:block;
+  width:144px;cursor:pointer;display:block;
   transform-origin:bottom center;
   animation:astro-wave 2.8s ease-in-out infinite;
   image-rendering:pixelated;image-rendering:crisp-edges;
@@ -1534,11 +1807,11 @@ html,body{width:100%;height:100%;background:#00000a;overflow:hidden;cursor:defau
   filter:drop-shadow(0 0 12px rgba(0,200,255,0.25));
 }
 #astro-widget:hover #astro-img{
-  width:118px;
+  width:156px;
   filter:drop-shadow(0 0 18px rgba(0,200,255,0.5));
 }
 #astro-bubble{
-  position:absolute;bottom:115px;left:14px;
+  position:absolute;bottom:150px;left:18px;
   background:rgba(0,10,20,0.82);
   border:1px solid rgba(0,200,255,0.35);
   padding:10px 14px 10px 12px;
@@ -1658,7 +1931,7 @@ html,body{width:100%;height:100%;background:#00000a;overflow:hidden;cursor:defau
 <canvas id="c"></canvas>
 <div id="hud"></div>
 <audio id="bg-music" preload="auto" loop>
-  <source src="Space.mp3" type="audio/mpeg">
+  <source src="Timber.mp3" type="audio/mpeg">
 </audio>
 <div id="solar-hint">drag to orbit &nbsp;·&nbsp; w a s d to move around &nbsp;·&nbsp; pinch to zoom &nbsp;·&nbsp; click planet to explore</div>
 <div id="planet-labels"></div>
@@ -1749,7 +2022,7 @@ html,body{width:100%;height:100%;background:#00000a;overflow:hidden;cursor:defau
 const PLANETS = [
   {
     name:'Home', tab:'Home',
-    orbitRadius:11.5, orbitSpeed:0.13, orbitPhase:0,
+    orbitRadius:11.5, orbitSpeed:0.38, orbitPhase:0,
     size:1.54,
     bodyColor:0x214c10, emissive:0x071504, emissiveInt:0.24,
     atmHex:0x50b444, atmOpacity:0.28, roughness:0.80,
@@ -1761,7 +2034,7 @@ const PLANETS = [
   },
   {
     name:'Projects', tab:'Projects',
-    orbitRadius:19.0, orbitSpeed:0.075, orbitPhase:1.2,
+    orbitRadius:19.0, orbitSpeed:0.23, orbitPhase:1.2,
     size:1.78,
     bodyColor:0x320c84, emissive:0x0c0028, emissiveInt:0.28,
     atmHex:0x6c34d8, atmOpacity:0.22, roughness:0.70,
@@ -1773,19 +2046,19 @@ const PLANETS = [
   },
   {
     name:'Skills.md', tab:'Skills.md',
-    orbitRadius:27.0, orbitSpeed:0.048, orbitPhase:2.5,
+    orbitRadius:27.0, orbitSpeed:0.15, orbitPhase:2.5,
     size:2.26,
     bodyColor:0x0a3870, emissive:0x020a1c, emissiveInt:0.20,
     atmHex:0x2278cc, atmOpacity:0.34, roughness:0.26,
     ring:false,
     pageGrad:['#01060f','#030c1e','#05142e'], textCol:'#96c8ff', accent:'#3680d8',
     intro:'Depth Below the Storm',
-    body:"A broad toolkit shaped by real projects. Strong in product research, communication, digital marketing, and visual storytelling. Comfortable with AI tools like Lovable, Framer, and Cursor, plus PRD writing, growth thinking, Canva, Python basics, and no-code building.",
-    tags:['Digital Marketing','Communication & Storytelling','AI Tools (Lovable/Framer/Cursor)','Product Research','Canva','Python Basics']
+    body:"I am working toward becoming an AI-first PM, and I am taking that path like a builder. I use tools like Claude Code, Codex, Antigravity, Lovable, Framer, and Cursor to prototype fast, test ideas, and learn by shipping. I have worked on my own agents, know how to structure context well, write strong system prompts, and understand how LLM behavior shapes product decisions. Communication is one of my strongest skills, and user empathy is the instinct I trust most.",
+    tags:['AI-first PM','Builder mindset','Claude Code','Agent workflows','System prompts','User empathy']
   },
   {
     name:"devv's blog", tab:'Blog',
-    orbitRadius:36.0, orbitSpeed:0.030, orbitPhase:4.1,
+    orbitRadius:36.0, orbitSpeed:0.098, orbitPhase:4.1,
     size:1.22,
     bodyColor:0x8a2800, emissive:0x360600, emissiveInt:0.30,
     atmHex:0xe04e10, atmOpacity:0.28, roughness:0.58,
@@ -1797,7 +2070,7 @@ const PLANETS = [
   },
   {
     name:'Contact', tab:'Contact',
-    orbitRadius:46.0, orbitSpeed:0.019, orbitPhase:5.5,
+    orbitRadius:46.0, orbitSpeed:0.062, orbitPhase:5.5,
     size:1.44,
     bodyColor:0x8a5810, emissive:0x2e1400, emissiveInt:0.22,
     atmHex:0xcc9028, atmOpacity:0.24, roughness:0.90,
@@ -1805,7 +2078,7 @@ const PLANETS = [
     pageGrad:['#0e0800','#221400','#342000'], textCol:'#ffe090', accent:'#d4a030',
     intro:'The Sand Is Always Falling',
     body:"Always open to product roles, collabs, and conversations about building things that matter. Final-year student actively looking for full-time PM opportunities from 2026. Reach out, let's talk.",
-    tags:['devsaxena2003@gmail.com','+91-9109304535','linkedin.com/in/dev-saxena-650a27207/','devvv.bearblog.dev']
+    tags:['devvbuilds@gmail.com','+91-9109304535','linkedin.com/in/dev-saxena-650a27207/','devvv.bearblog.dev','https://github.com/devvbuilds-png']
   }
 ];
 
@@ -2915,6 +3188,7 @@ function renderShowcaseLogo(item, compact = false) {
 
 function renderProjectsPage() {
   const featured = PROJECT_ITEMS.find(item => item.slug === 'kaizen') || PROJECT_ITEMS[0];
+  const githubHref = 'https://github.com/devvbuilds-png';
 
   const experienceMarkup = EXPERIENCE_ITEMS.map(item => `
     <article class="showcase-card ${item.badgeClass}">
@@ -2957,6 +3231,9 @@ function renderProjectsPage() {
           <span class="projects-pill">design driven</span>
           <span class="projects-pill">ai native</span>
         </div>
+        <div class="contact-cta-row">
+          <a class="contact-primary" href="${githubHref}" target="_blank" rel="noreferrer">Open GitHub</a>
+        </div>
       </section>
 
       <section class="projects-featured">
@@ -2997,12 +3274,14 @@ function renderProjectsPage() {
 }
 
 function renderContactPage(contactPlanet) {
-  const email = contactPlanet.tags[0] || 'devsaxena2003@gmail.com';
+  const email = contactPlanet.tags[0] || 'devvbuilds@gmail.com';
   const phone = contactPlanet.tags[1] || '+91-9109304535';
   const linkedinRaw = contactPlanet.tags[2] || 'linkedin.com/in/dev-saxena-650a27207/';
   const blogRaw = contactPlanet.tags[3] || 'devvv.bearblog.dev';
+  const githubRaw = contactPlanet.tags[4] || 'https://github.com/devvbuilds-png';
   const linkedinHref = linkedinRaw.startsWith('http') ? linkedinRaw : `https://${linkedinRaw}`;
   const blogHref = blogRaw.startsWith('http') ? blogRaw : `https://${blogRaw}`;
+  const githubHref = githubRaw.startsWith('http') ? githubRaw : `https://${githubRaw}`;
 
   const methods = [
     {
@@ -3022,6 +3301,15 @@ function renderContactPage(contactPlanet) {
       value:linkedinRaw,
       href:linkedinHref,
       cta:'Open LinkedIn'
+    },
+    {
+      icon:'<>',
+      type:'GitHub',
+      title:'Build archive',
+      copy:'Best if you want to see code, experiments, and the way I build in public across products and side projects.',
+      value:githubRaw.replace(/^https?:\/\//, ''),
+      href:githubHref,
+      cta:'Open GitHub'
     },
     {
       icon:'()',
@@ -3057,6 +3345,21 @@ function renderContactPage(contactPlanet) {
     </article>
   `).join('');
 
+  const quickLinks = [
+    {label:'Email', value:email, meta:'Best for detailed intros and thoughtful context', href:`mailto:${email}`},
+    {label:'LinkedIn', value:linkedinRaw, meta:'Best for quick outreach and recruiter messages', href:linkedinHref},
+    {label:'GitHub', value:githubRaw.replace(/^https?:\/\//, ''), meta:'Best for code, products, and public build trail', href:githubHref},
+    {label:'Blog', value:blogRaw, meta:'Best for understanding how I think and write', href:blogHref}
+  ];
+
+  const quickLinksMarkup = quickLinks.map(link => `
+    <a class="contact-quick-item" href="${link.href}" target="_blank" rel="noreferrer">
+      <span class="contact-quick-label">${link.label}</span>
+      <span class="contact-quick-value">${link.value}</span>
+      <span class="contact-quick-meta">${link.meta}</span>
+    </a>
+  `).join('');
+
   return `
     <div class="contact-page">
       <section class="contact-hero">
@@ -3069,6 +3372,7 @@ function renderContactPage(contactPlanet) {
               <span class="contact-pill">product roles</span>
               <span class="contact-pill">pm opportunities</span>
               <span class="contact-pill">collabs</span>
+              <span class="contact-pill">github ready</span>
               <span class="contact-pill">story-led products</span>
             </div>
             <div class="contact-cta-row">
@@ -3092,32 +3396,30 @@ function renderContactPage(contactPlanet) {
       </section>
 
       <div class="contact-sections">
-        <section>
-          <div class="contact-section-head">
-            <div>
-              <div class="contact-section-label">Channels</div>
-              <h2 class="contact-section-title">Choose the fastest route in</h2>
+        <section class="contact-layout">
+          <div>
+            <div class="contact-section-head">
+              <div>
+                <div class="contact-section-label">Channels</div>
+                <h2 class="contact-section-title">Choose the route that fits the moment</h2>
+              </div>
+              <div class="contact-section-note">Email for depth, LinkedIn for speed, GitHub for proof of work, and the rest if you want a fuller picture.</div>
             </div>
-            <div class="contact-section-note">Email is best for thoughtful intros. LinkedIn is great for quick outreach. The rest is here if you want a more direct route.</div>
+            <div class="contact-method-grid">${methodsMarkup}</div>
           </div>
-          <div class="contact-method-grid">${methodsMarkup}</div>
-        </section>
-
-        <section class="contact-availability">
-          <article class="contact-note-card">
-            <div class="contact-section-label">What to send</div>
-            <h3 class="contact-note-title">A short message with context is enough.</h3>
-            <p class="contact-note-body">A role, a team, a product idea, or simply why you think we should talk. Clear beats formal every time.</p>
-          </article>
-          <article class="contact-time-card">
-            <div class="contact-section-label">Response notes</div>
-            <div class="contact-time-list">
-              <span><strong>Email</strong><b>Best for detailed intros</b></span>
-              <span><strong>LinkedIn</strong><b>Best for quick starts</b></span>
-              <span><strong>Phone</strong><b>Best for urgent coordination</b></span>
-              <span><strong>Blog</strong><b>Best for understanding how I think</b></span>
-            </div>
-          </article>
+          <aside class="contact-rail">
+            <article class="contact-quick-card">
+              <div class="contact-section-label">Quick links</div>
+              <h3 class="contact-note-title">Everything important in one place.</h3>
+              <p class="contact-note-body">If you already know how you want to reach out, use these direct links and skip the scroll.</p>
+              <div class="contact-quick-list">${quickLinksMarkup}</div>
+            </article>
+            <article class="contact-note-card">
+              <div class="contact-section-label">What to send</div>
+              <h3 class="contact-note-title">A short message with context is enough.</h3>
+              <p class="contact-note-body">A role, a team, a product idea, or simply why you think we should talk. Clear beats formal every time.</p>
+            </article>
+          </aside>
         </section>
       </div>
     </div>
@@ -3212,52 +3514,79 @@ function renderHomePage(homePlanet) {
 }
 
 function renderSkillsPage(skillsPlanet) {
-  const skillCards = [
+  const learningTracks = [
     {
-      icon:'PM',
-      label:'Product',
-      title:'Product sense and structure',
-      copy:'Comfortable with PRDs, product research, user journeys, problem framing, and turning scattered inputs into a real plan.',
-      tags:['PRDs','Research','Flows']
+      label:'Right now',
+      title:'I am still early, but the direction is clear.',
+      copy:'I am not a PM yet. I am working toward becoming an AI-first PM, and I am doing it through hands-on building, product thinking, and repeated learning loops.',
+      tags:['Learning by doing','Curiosity','Momentum']
     },
     {
       icon:'AI',
-      label:'AI tools',
-      title:'AI-native building stack',
-      copy:'Hands-on with Lovable, Framer, Cursor, and AI workflows that move ideas from concept to usable prototype fast.',
-      tags:['Lovable','Framer','Cursor']
+      label:'Builder side',
+      title:'I will stay a builder, even as the role becomes product.',
+      copy:'The builder instinct is not going away. I like using the best tools available to move quickly from idea to prototype, test behavior, and sharpen the product through iteration.',
+      tags:['Builder mindset','Rapid prototyping','Iteration']
+    },
+    {
+      icon:'LL',
+      label:'AI PM path',
+      title:'The role I am growing toward is AI-first PM.',
+      copy:'What interests me most is where AI becomes useful in a real product. I care about what users want, where AI creates leverage, and how to shape solutions that feel grounded and usable.',
+      tags:['AI-first PM','Product thinking','User problems']
     },
     {
       icon:'ST',
-      label:'Story',
-      title:'Communication and narrative',
-      copy:'Strong at explaining ideas, shaping product stories, and making work easier for other people to understand and support.',
-      tags:['Writing','Storytelling','Presentation']
-    },
-    {
-      icon:'MK',
-      label:'Growth',
-      title:'Marketing and audience instinct',
-      copy:'Background in digital marketing and visual direction, with a good instinct for framing products so attention turns into interest.',
-      tags:['Digital marketing','Positioning','Audience']
-    },
-    {
-      icon:'DZ',
-      label:'Design',
-      title:'Visual and no-code fluency',
-      copy:'Comfortable with Canva, interface thinking, and no-code tools that help test ideas before they need a heavier build.',
-      tags:['Canva','UI sense','No-code']
-    },
-    {
-      icon:'PY',
-      label:'Build',
-      title:'Technical curiosity that keeps growing',
-      copy:'Comfortable with Python basics and playful product experiments, including building a platformer in GDevelop from scratch.',
-      tags:['Python basics','GDevelop','Prototyping']
+      label:'Superpowers',
+      title:'Communication, user empathy, and creative thinking are my edge.',
+      copy:'AI can help build almost anything. The harder part is seeing what is worth building in the first place. I am strongest when ideas, user understanding, and communication come together to shape solutions that feel both original and genuinely useful.',
+      tags:['Communication','User empathy','Creativity']
     }
   ];
 
-  const skillMarkup = skillCards.map(card => `
+  const notes = [
+    {
+      icon:'AG',
+      label:'Agents',
+      title:'I have worked on my own agents.',
+      copy:'That gave me a practical feel for context quality, instruction design, and how small prompt shifts can change outcomes in meaningful ways.',
+      tags:['Context','Agent workflows','Iteration']
+    },
+    {
+      icon:'SP',
+      label:'Product',
+      title:'I know how to shape products before they are built.',
+      copy:'I am comfortable turning rough ideas into structured product thinking through PRDs, flow design, prototyping, and early solution framing. I like bringing order to ambiguity before execution begins.',
+      tags:['PRDs','Prototyping','Flow design']
+    },
+    {
+      icon:'LM',
+      label:'LLMs',
+      title:'I understand LLMs at a practical product level.',
+      copy:'I am not building models from scratch yet, but I understand enough to reason about behavior, prompting, constraints, and how those things affect product decisions.',
+      tags:['Practical understanding','AI behavior','Learning']
+    },
+    {
+      icon:'BD',
+      label:'Build',
+      title:'I learn fastest by making things.',
+      copy:'This is probably the clearest pattern in how I work. I learn fastest when I am building, testing, and refining in real time. That is true across product experiments, AI workflows, no-code tools, and smaller technical builds.',
+      tags:['Learn by building','Prototypes','Builder mindset']
+    }
+  ];
+
+  const trackMarkup = learningTracks.map(item => `
+    <article class="skills-track-item">
+      <div class="skills-track-label">${item.label}</div>
+      <div>
+        <h3 class="skills-track-title">${item.title}</h3>
+        <p class="skills-track-copy">${item.copy}</p>
+        <div class="skills-track-tags">${item.tags.map(tag => `<span>${tag}</span>`).join('')}</div>
+      </div>
+    </article>
+  `).join('');
+
+  const notesMarkup = notes.map(card => `
     <article class="skills-card">
       <div class="skills-card-head">
         <div class="skills-icon">${card.icon}</div>
@@ -3275,25 +3604,25 @@ function renderSkillsPage(skillsPlanet) {
         <div class="skills-hero-grid">
           <div>
             <div class="skills-kicker">Skills planet</div>
-            <h1 class="skills-title">A toolkit built across product work, communication, AI tools, and shipping ideas.</h1>
+            <h1 class="skills-title">AI-first PM in progress. Builder by default.</h1>
             <p class="skills-summary">${skillsPlanet.body}</p>
             <div class="skills-pill-row">
-              <span class="skills-pill">product research</span>
-              <span class="skills-pill">communication</span>
-              <span class="skills-pill">ai tools</span>
-              <span class="skills-pill">visual storytelling</span>
+              <span class="skills-pill">aspiring ai-first pm</span>
+              <span class="skills-pill">always a builder</span>
+              <span class="skills-pill">user empathy</span>
+              <span class="skills-pill">context design</span>
             </div>
           </div>
           <aside class="skills-focus-card">
             <div>
-              <div class="contact-section-label">Core pattern</div>
-              <div class="skills-focus-title">Broad enough to connect dots, specific enough to ship.</div>
-              <p class="skills-focus-copy">The through-line is simple: these skills help me take an idea, sharpen it, and move it toward a better product.</p>
+              <div class="contact-section-label">Core lens</div>
+              <div class="skills-focus-title">A technical product lens shaped by tools, systems, and users.</div>
+              <p class="skills-focus-copy">I am strongest when product thinking, communication, and builder energy meet in the same workflow. That is where AI tools become genuinely useful, not just impressive.</p>
             </div>
             <div class="skills-focus-list">
-              <div class="skills-focus-item"><strong>Strongest lane</strong><span>Product plus communication</span></div>
-              <div class="skills-focus-item"><strong>Best edge</strong><span>AI-native speed with human judgment</span></div>
-              <div class="skills-focus-item"><strong>Working style</strong><span>Curious, structured, and fast to iterate</span></div>
+              <div class="skills-focus-item"><strong>Aiming for</strong><span>AI-first PM</span></div>
+              <div class="skills-focus-item"><strong>Working as</strong><span>Builder who prototypes fast and learns in the loop</span></div>
+              <div class="skills-focus-item"><strong>Best strengths</strong><span>Communication, user empathy, and context quality</span></div>
             </div>
           </aside>
         </div>
@@ -3303,12 +3632,67 @@ function renderSkillsPage(skillsPlanet) {
         <section>
           <div class="skills-section-head">
             <div>
-              <div class="skills-section-label">Capability map</div>
-              <h2 class="skills-section-title">What I can actually bring into a team</h2>
+              <div class="skills-section-label">Current stack</div>
+              <h2 class="skills-section-title">Tools and workflows I already use with confidence</h2>
             </div>
-            <div class="skills-section-note">These capabilities matter most together. Research, communication, product thinking, and tools reinforce each other.</div>
+            <div class="skills-section-note">A practical mix of coding tools, prompt workflows, and rapid prototyping systems that help me move from idea to usable output quickly.</div>
           </div>
-          <div class="skills-grid">${skillMarkup}</div>
+          <div class="skills-shell">
+            <div class="skills-shell-top">
+              <div class="skills-shell-dots">
+                <span class="skills-shell-dot"></span>
+                <span class="skills-shell-dot"></span>
+                <span class="skills-shell-dot"></span>
+              </div>
+              <div class="skills-shell-title">skills://builder-profile</div>
+            </div>
+            <div class="skills-shell-body">
+              <div class="skills-shell-block">
+                <div class="skills-shell-line">
+                  <span class="skills-shell-prompt">$</span>
+                  <span class="skills-shell-command">tools --current</span>
+                </div>
+                <div class="skills-shell-output">
+                  <span><strong>coding:</strong> Claude Code, Codex, Cursor</span>
+                  <span><strong>workflow:</strong> Antigravity, agent setups, prompt iteration</span>
+                  <span><strong>prototype:</strong> Lovable, Framer, no-code and rapid build tools</span>
+                </div>
+              </div>
+              <div class="skills-shell-block">
+                <div class="skills-shell-line">
+                  <span class="skills-shell-prompt">$</span>
+                  <span class="skills-shell-command">strengths --core</span>
+                </div>
+                <div class="skills-shell-output">
+                  <span><strong>product:</strong> user empathy, problem framing, product instinct</span>
+                  <span><strong>communication:</strong> clear thinking, narrative, alignment</span>
+                  <span><strong>ai:</strong> context design, system prompts, practical LLM judgment</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="skills-section-head">
+            <div>
+              <div class="skills-section-label">Learning track</div>
+              <h2 class="skills-section-title">The way I am growing into this work</h2>
+            </div>
+            <div class="skills-section-note">Where I am headed, what I already trust, and the abilities I am deliberately compounding through practice.</div>
+          </div>
+          <div class="skills-track">${trackMarkup}</div>
+        </section>
+
+        <section>
+          <div class="skills-section-head">
+            <div>
+              <div class="skills-section-label">Builder notes</div>
+              <h2 class="skills-section-title">Things I already use with confidence</h2>
+            </div>
+            <div class="skills-section-note">These are the practical edges that keep showing up when I build, test, write, and work through AI-heavy ideas.</div>
+          </div>
+          <div class="skills-grid">${notesMarkup}</div>
         </section>
       </div>
     </div>
@@ -3655,6 +4039,3 @@ animate();
 </script>
 </body>
 </html>
-
-
-
