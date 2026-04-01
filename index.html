@@ -2166,12 +2166,12 @@ let switching = false;
 let lastMY = 0;
 let focusedAnchor = new THREE.Vector3();
 
-// Default "beautiful" view â€” system fully visible, slight elevation, gentle angle
-const DEFAULT_VIEW = { radius: 92, azimuth: 0, elevation: 0.30, tx: 0, ty: 0, tz: 0 };
+// Default overview view â€” more top-down with a slight backward offset for cleaner framing
+const DEFAULT_VIEW = { radius: 98, azimuth: -1.19, elevation: 0.791, tx: -13.14, ty: 0, tz: 6.46 };
 
 // Orbital camera (solar map mode) â€” starts at default view
 const orbitState = {
-  target: new THREE.Vector3(0, 0, 0),
+  target: new THREE.Vector3(DEFAULT_VIEW.tx, DEFAULT_VIEW.ty, DEFAULT_VIEW.tz),
   radius: DEFAULT_VIEW.radius,
   azimuth: DEFAULT_VIEW.azimuth,
   elevation: DEFAULT_VIEW.elevation,
@@ -2257,8 +2257,12 @@ function initThree() {
   buildStarfield();
 
   camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.01, 2000);
-  camera.position.set(0, 22, 64);
-  camera.lookAt(0, 0, 0);
+  camera.position.set(
+    DEFAULT_VIEW.tx + DEFAULT_VIEW.radius * Math.cos(DEFAULT_VIEW.elevation) * Math.sin(DEFAULT_VIEW.azimuth),
+    DEFAULT_VIEW.ty + DEFAULT_VIEW.radius * Math.sin(DEFAULT_VIEW.elevation),
+    DEFAULT_VIEW.tz + DEFAULT_VIEW.radius * Math.cos(DEFAULT_VIEW.elevation) * Math.cos(DEFAULT_VIEW.azimuth)
+  );
+  camera.lookAt(DEFAULT_VIEW.tx, DEFAULT_VIEW.ty, DEFAULT_VIEW.tz);
 
   // Lights
   const ambient = new THREE.AmbientLight(0xdde8ff, 0.055);
