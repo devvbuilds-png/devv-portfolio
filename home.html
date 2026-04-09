@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dev Saxena</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & Base ── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scrollbar-width:thin;scrollbar-color:#f4a261 #0a0a0f}
+body{
+  background:#0a0a0f;
+  color:#e8e8f0;
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+  cursor:default;
+}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#0a0a0f}
+::-webkit-scrollbar-thumb{background:#f4a261;border-radius:3px}
+a{color:inherit;text-decoration:none}
+::selection{background:rgba(244,162,97,0.3);color:#fff}
+
+/* ── Starfield Canvas ── */
+#starfield{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  opacity:0.1;
+  transition:opacity 2s ease;
+}
+#starfield.bright{opacity:1}
+
+/* ── Ember Glow ── */
+#ember-glow{
+  position:fixed;
+  bottom:-20vh;left:50%;
+  width:120vw;height:80vh;
+  transform:translateX(-50%);
+  background:radial-gradient(ellipse at 50% 100%, rgba(244,162,97,0.08) 0%, rgba(231,111,81,0.04) 30%, transparent 70%);
+  z-index:1;pointer-events:none;
+  opacity:0;
+  transition:opacity 2s ease;
+}
+#ember-glow.visible{opacity:1}
+
+/* ── Navigation ── */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 32px;
+  background:rgba(10,10,15,0.0);
+  backdrop-filter:blur(0px);
+  -webkit-backdrop-filter:blur(0px);
+  transition:background 0.4s, backdrop-filter 0.4s, opacity 0.6s;
+  opacity:0;pointer-events:none;
+}
+#nav.visible{opacity:1;pointer-events:all}
+#nav.scrolled{
+  background:rgba(10,10,15,0.7);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+.nav-left{display:flex;align-items:center}
+.nav-orbit{
+  font-family:'Space Mono',monospace;
+  font-size:11px;letter-spacing:1px;
+  padding:6px 14px;
+  border:1px solid rgba(244,162,97,0.35);
+  color:#f4a261;
+  transition:all 0.25s;
+  cursor:pointer;
+  background:none;
+}
+.nav-orbit:hover{
+  background:rgba(244,162,97,0.1);
+  border-color:#f4a261;
+}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{
+  font-family:'Space Mono',monospace;
+  font-size:11px;letter-spacing:1px;
+  color:rgba(232,232,240,0.6);
+  transition:color 0.25s;
+  cursor:pointer;
+}
+.nav-links a:hover{color:#f4a261}
+
+/* ── Skip Intro ── */
+#skip-intro{
+  position:fixed;top:20px;right:32px;z-index:200;
+  font-family:'Space Mono',monospace;font-size:10px;
+  letter-spacing:1px;color:rgba(232,232,240,0.35);
+  background:none;border:1px solid rgba(232,232,240,0.12);
+  padding:6px 14px;cursor:pointer;
+  transition:all 0.3s;
+  opacity:0;
+}
+#skip-intro.visible{opacity:1}
+#skip-intro:hover{color:#f4a261;border-color:rgba(244,162,97,0.4)}
+
+/* ── Hero Section ── */
+#hero{
+  position:relative;z-index:2;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:0 24px;
+}
+.typewriter-container{
+  min-height:160px;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+}
+.typewriter-line{
+  font-family:'Space Mono',monospace;
+  font-size:clamp(16px, 2.8vw, 24px);
+  color:#f4a261;
+  line-height:1.8;
+  opacity:0;
+  white-space:nowrap;
+}
+.typewriter-line.active{opacity:1}
+.typewriter-cursor{
+  display:inline-block;
+  width:2px;height:1.1em;
+  background:#f4a261;
+  margin-left:2px;
+  vertical-align:text-bottom;
+  animation:blink 0.8s step-end infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+.hero-subtitle{
+  font-family:'Inter',sans-serif;
+  font-size:clamp(14px, 1.8vw, 18px);
+  color:rgba(232,232,240,0.6);
+  max-width:600px;
+  line-height:1.7;
+  margin-top:32px;
+  opacity:0;
+  transform:translateY(10px);
+  transition:all 0.8s ease;
+}
+.hero-subtitle.visible{opacity:1;transform:translateY(0)}
+
+.hero-buttons{
+  display:flex;gap:16px;
+  margin-top:28px;
+  opacity:0;
+  transform:translateY(10px);
+  transition:all 0.8s ease 0.2s;
+}
+.hero-buttons.visible{opacity:1;transform:translateY(0)}
+
+.btn{
+  font-family:'Space Mono',monospace;
+  font-size:11px;letter-spacing:1.5px;
+  padding:12px 24px;
+  border:1px solid;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  text-transform:lowercase;
+  background:transparent;
+}
+.btn-primary{
+  border-color:#f4a261;
+  color:#f4a261;
+}
+.btn-primary:hover{
+  background:rgba(244,162,97,0.12);
+  box-shadow:0 0 20px rgba(244,162,97,0.15);
+}
+.btn-secondary{
+  border-color:rgba(232,232,240,0.2);
+  color:rgba(232,232,240,0.6);
+}
+.btn-secondary:hover{
+  border-color:rgba(232,232,240,0.4);
+  color:#e8e8f0;
+}
+
+.scroll-indicator{
+  position:absolute;
+  bottom:40px;left:50%;
+  transform:translateX(-50%);
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:2px;
+  color:rgba(232,232,240,0.3);
+  opacity:0;
+  transition:opacity 0.8s ease;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+.scroll-indicator.visible{opacity:1}
+.scroll-arrow{
+  width:1px;height:24px;
+  position:relative;overflow:hidden;
+}
+.scroll-arrow::after{
+  content:'';
+  position:absolute;top:-24px;left:0;
+  width:1px;height:24px;
+  background:linear-gradient(to bottom, transparent, rgba(244,162,97,0.6));
+  animation:scroll-pulse 1.8s ease-in-out infinite;
+}
+@keyframes scroll-pulse{
+  0%{transform:translateY(0);opacity:0}
+  50%{opacity:1}
+  100%{transform:translateY(48px);opacity:0}
+}
+
+/* ── Sections Common ── */
+.section{
+  position:relative;z-index:2;
+  padding:100px 32px;
+  max-width:1000px;
+  margin:0 auto;
+}
+.section-label{
+  font-family:'Space Mono',monospace;
+  font-size:11px;letter-spacing:2px;
+  color:rgba(244,162,97,0.6);
+  margin-bottom:14px;
+  text-transform:lowercase;
+}
+.section-heading{
+  font-family:'Space Mono',monospace;
+  font-size:clamp(18px, 2.6vw, 26px);
+  font-weight:400;
+  color:#e8e8f0;
+  line-height:1.5;
+  max-width:700px;
+  margin-bottom:48px;
+}
+.section-inner{
+  border-left:2px solid rgba(244,162,97,0.3);
+  padding-left:28px;
+}
+
+/* Scroll-reveal */
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ── About Section ── */
+.about-layout{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:48px;
+  align-items:start;
+}
+.about-photo-wrap{
+  position:relative;
+  width:180px;height:180px;
+  flex-shrink:0;
+}
+.about-photo{
+  width:100%;height:100%;
+  object-fit:cover;
+  border:2px solid rgba(244,162,97,0.3);
+  filter:saturate(0.85);
+  animation:float 6s ease-in-out infinite;
+}
+.about-photo-wrap::after{
+  content:'';
+  position:absolute;inset:-4px;
+  border:1px solid rgba(244,162,97,0.12);
+  box-shadow:0 0 30px rgba(244,162,97,0.08);
+  pointer-events:none;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+.about-text p{
+  font-family:'Inter',sans-serif;
+  font-size:15px;line-height:1.85;
+  color:rgba(232,232,240,0.75);
+  margin-bottom:18px;
+}
+.about-tags{
+  display:flex;flex-wrap:wrap;gap:10px;
+  margin-top:24px;
+}
+.about-tag{
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:1.5px;
+  padding:6px 14px;
+  border:1px solid rgba(244,162,97,0.2);
+  color:rgba(244,162,97,0.7);
+  transition:all 0.3s;
+}
+.about-tag:hover{
+  border-color:#f4a261;
+  color:#f4a261;
+  background:rgba(244,162,97,0.06);
+}
+
+/* ── Transmission Section ── */
+.log-card{
+  background:rgba(10,10,15,0.8);
+  border:1px solid rgba(244,162,97,0.25);
+  padding:32px;
+  font-family:'Space Mono',monospace;
+  max-width:600px;
+}
+.log-row{
+  display:flex;gap:16px;
+  padding:10px 0;
+  border-bottom:1px solid rgba(244,162,97,0.06);
+  opacity:0;
+  transform:translateX(-10px);
+  transition:all 0.4s ease;
+}
+.log-row.visible{
+  opacity:1;
+  transform:translateX(0);
+}
+.log-key{
+  font-size:11px;letter-spacing:1.5px;
+  color:rgba(244,162,97,0.6);
+  min-width:130px;
+  flex-shrink:0;
+  text-transform:uppercase;
+}
+.log-val{
+  font-size:12px;
+  color:rgba(232,232,240,0.8);
+}
+
+/* ── Payload Section (Cards) ── */
+.payload-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+.payload-card{
+  background:rgba(10,10,15,0.6);
+  border:1px solid rgba(232,232,240,0.06);
+  border-top:2px solid rgba(244,162,97,0.4);
+  padding:28px 24px;
+  transition:all 0.3s ease;
+}
+.payload-card:hover{
+  transform:scale(1.02);
+  box-shadow:0 0 30px rgba(244,162,97,0.08);
+  border-color:rgba(244,162,97,0.15);
+  border-top-color:#f4a261;
+}
+.payload-card-label{
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:2px;
+  color:#f4a261;
+  margin-bottom:12px;
+  text-transform:uppercase;
+}
+.payload-card h3{
+  font-family:'Space Mono',monospace;
+  font-size:14px;font-weight:400;
+  color:#e8e8f0;
+  line-height:1.5;
+  margin-bottom:10px;
+}
+.payload-card p{
+  font-family:'Inter',sans-serif;
+  font-size:13px;line-height:1.75;
+  color:rgba(232,232,240,0.6);
+  margin-bottom:16px;
+}
+.payload-card-tags{
+  display:flex;flex-wrap:wrap;gap:8px;
+}
+.payload-card-tags span{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:1px;
+  padding:4px 10px;
+  border:1px solid rgba(244,162,97,0.15);
+  color:rgba(244,162,97,0.5);
+  text-transform:uppercase;
+}
+
+/* ── Mobile ── */
+@media(max-width:768px){
+  .about-layout{
+    grid-template-columns:1fr;
+    gap:32px;
+    justify-items:center;
+  }
+  .about-photo-wrap{width:140px;height:140px}
+  .about-text{text-align:left}
+  .payload-grid{grid-template-columns:1fr}
+  .section{padding:60px 20px}
+  .section-inner{padding-left:18px}
+  .log-row{flex-direction:column;gap:4px}
+  .log-key{min-width:unset}
+  .nav-links{gap:16px}
+  .nav-links a{font-size:10px}
+  #nav{padding:16px 20px}
+  .typewriter-line{white-space:normal;text-align:center}
+  .hero-buttons{flex-direction:column;align-items:center}
+}
+@media(max-width:480px){
+  .nav-name{font-size:11px}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Starfield -->
+<canvas id="starfield"></canvas>
+
+<!-- Ember Glow -->
+<div id="ember-glow"></div>
+
+<!-- Skip Intro -->
+<button id="skip-intro" onclick="skipIntro()">skip intro</button>
+
+<!-- Navigation -->
+<nav id="nav">
+  <div class="nav-left">
+    <a href="index.html" class="nav-orbit" onclick="sessionStorage.setItem('skipIntro','1'); sessionStorage.setItem('returnToFocused','1')">&larr; return to orbit</a>
+  </div>
+  <div class="nav-links">
+    <a onclick="scrollToSection('about')">about</a>
+    <a onclick="scrollToSection('transmission')">log</a>
+    <a onclick="scrollToSection('payload')">strengths</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="typewriter-container" id="typewriter-container">
+    <div class="typewriter-line" id="line1"></div>
+    <div class="typewriter-line" id="line2"></div>
+  </div>
+  <p class="hero-subtitle" id="hero-subtitle">A passionate individual who leverages AI to build, iterate and test products.</p>
+  <div class="hero-buttons" id="hero-buttons">
+    <a onclick="scrollToSection('about')" class="btn btn-primary" style="cursor:pointer">[ explore this world ]</a>
+    <a href="https://linkedin.com/in/dev-saxena-650a27207/" target="_blank" rel="noreferrer" class="btn btn-secondary">[ open linkedin ]</a>
+  </div>
+  <div class="scroll-indicator" id="scroll-indicator">
+    <span>scroll to explore</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="section" id="about">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">// signal_origin</div>
+      <h2 class="section-heading">AI-first product builder. Strong on user empathy. Building products that feel alive.</h2>
+    </div>
+    <div class="about-layout reveal">
+      <div class="about-photo-wrap">
+        <img src="image-removebg-preview.png" alt="Dev Saxena" class="about-photo">
+      </div>
+      <div class="about-text">
+        <p>I'm Dev, a final-year ECE student at Manipal Institute of Technology. Previously, a product intern at BetterPlace, where I worked on LMS and onboarding products for frontline workers. I worked on PRDs, product analysis, prototyping & adoption.</p>
+        <p>Outside of that, I build. I've shipped multiple AI products — using agentic coders like Claude Code, Codex, Antigravity (experimented with them all). I'm not a coder. I'm a builder who uses AI the way great PMs use whatever tool gets the job done.</p>
+        <p>Communication is one of my strongest skills, and I like making ideas easier to act on. I enjoy gaming and music that hits different.</p>
+        <div class="about-tags">
+          <span class="about-tag">PRODUCT MANAGEMENT</span>
+          <span class="about-tag">AI NATIVE</span>
+          <span class="about-tag">CREATIVE</span>
+          <span class="about-tag">MIT MANIPAL 26</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Transmission Section -->
+<section class="section" id="transmission">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">// transmission</div>
+      <h2 class="section-heading">The short version, if you're in a hurry.</h2>
+    </div>
+    <div class="log-card reveal" id="log-card">
+      <div class="log-row" style="transition-delay:0ms"><span class="log-key">ROLE:</span><span class="log-val">AI BUILDER</span></div>
+      <div class="log-row" style="transition-delay:100ms"><span class="log-key">DEGREE:</span><span class="log-val">ECE @ MIT Manipal</span></div>
+      <div class="log-row" style="transition-delay:200ms"><span class="log-key">SEEKING:</span><span class="log-val">Full-time PM from 2026</span></div>
+      <div class="log-row" style="transition-delay:300ms"><span class="log-key">SHIPPED:</span><span class="log-val">Kaizen-AI, NoteCode, VeriMax, This Portfolio</span></div>
+      <div class="log-row" style="transition-delay:400ms"><span class="log-key">TOOLS:</span><span class="log-val">Claude Code, Codex, Replit, Obsidian, Framer, Cursor</span></div>
+      <div class="log-row" style="transition-delay:500ms"><span class="log-key">PERSONALITY:</span><span class="log-val">Creative, Smart, Confident and Curious</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Payload Section -->
+<section class="section" id="payload">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">// payload</div>
+      <h2 class="section-heading">What I bring to work.</h2>
+    </div>
+    <div class="payload-grid">
+      <div class="payload-card reveal">
+        <div class="payload-card-label">Product Thinking</div>
+        <h3>Messy problems with real users inside them.</h3>
+        <p>User experience matters most — finding friction, shaping the right flow, moving people from confusion to momentum.</p>
+        <div class="payload-card-tags">
+          <span>USER EMPATHY</span><span>PRDs</span><span>GROWTH</span>
+        </div>
+      </div>
+      <div class="payload-card reveal">
+        <div class="payload-card-label">AI Native</div>
+        <h3>I build fast, but I care about the shape of the system.</h3>
+        <p>AI tools aren't a shortcut — they're how I think and ship. I explore, prototype, iterate quickly — always with a clear point of view.</p>
+        <div class="payload-card-tags">
+          <span>AGENTIC CODING</span><span>RAPID PROTOTYPING</span><span>AUTOMATIONS</span>
+        </div>
+      </div>
+      <div class="payload-card reveal">
+        <div class="payload-card-label">Communication</div>
+        <h3>Clarity is what I bring to teams.</h3>
+        <p>I like turning fuzzy ideas into plans teams can act on through writing, alignment, and clear execution.</p>
+        <div class="payload-card-tags">
+          <span>STORYTELLING</span><span>ALIGNMENT</span><span>EXECUTION</span>
+        </div>
+      </div>
+      <div class="payload-card reveal">
+        <div class="payload-card-label">Energy</div>
+        <h3>Products people remember and teams are excited about.</h3>
+        <p>Thoughtful product work with contagious ambition. Useful, alive, and hard to ignore.</p>
+        <div class="payload-card-tags">
+          <span>ZERO TO ONE</span><span>LEADERSHIP</span><span>TEAMWORK</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer spacer -->
+<div style="height:80px"></div>
+
+<script>
+/* ═══════════════════════════════════════
+   STARFIELD
+═══════════════════════════════════════ */
+const canvas = document.getElementById('starfield');
+const ctx = canvas.getContext('2d');
+let stars = [];
+let scrollY = 0;
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function createStars() {
+  stars = [];
+  const count = Math.floor((canvas.width * canvas.height) / 2800);
+  for (let i = 0; i < count; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height * 3,
+      r: Math.random() * 1.4 + 0.3,
+      a: Math.random() * 0.7 + 0.15,
+      twinkleSpeed: Math.random() * 0.008 + 0.002,
+      twinkleOffset: Math.random() * Math.PI * 2,
+      depth: Math.random() * 0.6 + 0.4
+    });
+  }
+}
+
+function drawStars(time) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (const s of stars) {
+    const parallax = scrollY * s.depth * 0.15;
+    let y = (s.y - parallax) % (canvas.height * 3);
+    if (y < -10) y += canvas.height * 3;
+    if (y > canvas.height + 10) continue;
+    const flicker = Math.sin(time * s.twinkleSpeed + s.twinkleOffset) * 0.3 + 0.7;
+    ctx.beginPath();
+    ctx.arc(s.x, y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(232,232,240,${s.a * flicker})`;
+    ctx.fill();
+  }
+  requestAnimationFrame(drawStars);
+}
+
+resizeCanvas();
+createStars();
+requestAnimationFrame(drawStars);
+window.addEventListener('resize', () => { resizeCanvas(); createStars(); });
+window.addEventListener('scroll', () => { scrollY = window.scrollY; });
+
+/* ═══════════════════════════════════════
+   TYPEWRITER INTRO
+═══════════════════════════════════════ */
+const lines = [
+  { el: 'line1', text: "hi. i'm dev.", speed: 70, pause: 700 },
+  { el: 'line2', text: 'welcome to my home. this is where you find out who i am.', speed: 55, pause: 1000 }
+];
+
+let introComplete = false;
+let introAborted = false;
+let currentCursor = null;
+
+function typewriterLine(lineObj) {
+  return new Promise(resolve => {
+    if (introAborted) { resolve(); return; }
+    const el = document.getElementById(lineObj.el);
+    el.classList.add('active');
+    let i = 0;
+    const cursor = document.createElement('span');
+    cursor.className = 'typewriter-cursor';
+    if (currentCursor) currentCursor.remove();
+    currentCursor = cursor;
+    el.appendChild(cursor);
+
+    function type() {
+      if (introAborted) { resolve(); return; }
+      if (i < lineObj.text.length) {
+        cursor.before(document.createTextNode(lineObj.text[i]));
+        i++;
+        setTimeout(type, lineObj.speed);
+      } else {
+        setTimeout(resolve, lineObj.pause);
+      }
+    }
+    type();
+  });
+}
+
+async function runIntro() {
+  // Show skip button after 1s
+  setTimeout(() => {
+    if (!introAborted) document.getElementById('skip-intro').classList.add('visible');
+  }, 1000);
+
+  // Brief pause before typing starts
+  await new Promise(r => setTimeout(r, 600));
+  if (introAborted) return;
+
+  for (const line of lines) {
+    await typewriterLine(line);
+    if (introAborted) return;
+  }
+
+  // Brighten starfield + fade in ember glow
+  document.getElementById('starfield').classList.add('bright');
+  document.getElementById('ember-glow').classList.add('visible');
+
+  await new Promise(r => setTimeout(r, 500));
+  if (introAborted) return;
+  document.getElementById('hero-subtitle').classList.add('visible');
+
+  await new Promise(r => setTimeout(r, 300));
+  if (introAborted) return;
+  document.getElementById('hero-buttons').classList.add('visible');
+
+  await new Promise(r => setTimeout(r, 400));
+  if (introAborted) return;
+  document.getElementById('scroll-indicator').classList.add('visible');
+
+  // Show nav
+  document.getElementById('nav').classList.add('visible');
+  document.getElementById('skip-intro').classList.remove('visible');
+  introComplete = true;
+}
+
+function skipIntro() {
+  introAborted = true;
+
+  // Show all typewriter lines instantly
+  lines.forEach(l => {
+    const el = document.getElementById(l.el);
+    el.textContent = l.text;
+    el.classList.add('active');
+  });
+  if (currentCursor) currentCursor.remove();
+
+  // Show everything
+  document.getElementById('starfield').classList.add('bright');
+  document.getElementById('ember-glow').classList.add('visible');
+  document.getElementById('hero-subtitle').classList.add('visible');
+  document.getElementById('hero-buttons').classList.add('visible');
+  document.getElementById('scroll-indicator').classList.add('visible');
+  document.getElementById('nav').classList.add('visible');
+  document.getElementById('skip-intro').classList.remove('visible');
+  introComplete = true;
+}
+
+runIntro();
+
+/* ═══════════════════════════════════════
+   SCROLL-TO-SECTION (no history pollution)
+═══════════════════════════════════════ */
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ═══════════════════════════════════════
+   NAV SCROLL STATE
+═══════════════════════════════════════ */
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('nav');
+  if (window.scrollY > 80) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+});
+
+/* ═══════════════════════════════════════
+   SCROLL REVEAL (IntersectionObserver)
+═══════════════════════════════════════ */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      // For log card rows
+      if (entry.target.id === 'log-card') {
+        const rows = entry.target.querySelectorAll('.log-row');
+        rows.forEach((row, i) => {
+          setTimeout(() => row.classList.add('visible'), i * 100);
+        });
+      }
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>
