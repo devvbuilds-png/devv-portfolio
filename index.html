@@ -284,52 +284,105 @@ html,body{width:100%;height:100%;background:#00000a;overflow:hidden;cursor:defau
 #zoom-flash{position:fixed;inset:0;z-index:50;opacity:0;pointer-events:none;transition:opacity 0.25s}
 
 /* â”€â”€ Blog reader (Bear Blog style) â”€â”€ */
+.blog-eyebrow{color:#d7a98a !important;font-family:'Fira Code',monospace !important}
+.blog-title{color:#f0d8c5 !important;font-family:'Fira Code',monospace !important}
+.blog-divider{background:#c98d66 !important}
+.blog-intro{color:rgba(214,167,136,0.78) !important;font-family:'Fira Code',monospace !important}
+.blog-header{
+  max-width:520px;
+  margin:6px auto 4px;
+  padding:16px 18px;
+  border-radius:14px;
+  border:1px solid rgba(212,155,118,0.34);
+  background:linear-gradient(155deg, rgba(43,31,25,0.78), rgba(30,22,18,0.9));
+  box-shadow:0 12px 24px rgba(0,0,0,0.22);
+}
+.blog-header-kicker{
+  font-family:'Fira Code',monospace;
+  font-size:9px;
+  letter-spacing:1.7px;
+  text-transform:uppercase;
+  color:rgba(212,155,118,0.82);
+  margin-bottom:8px;
+}
+.blog-header-title{
+  margin:0 0 10px;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:18px;
+  line-height:1.35;
+  font-weight:600;
+  color:#f2dcc8;
+}
+.blog-header-link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 11px;
+  border-radius:10px;
+  border:1px solid rgba(212,155,118,0.34);
+  background:rgba(212,155,118,0.07);
+  color:#e3bb9e;
+  text-decoration:none;
+  font-family:'Fira Code',monospace;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:0.45px;
+  text-transform:none;
+  box-shadow:none;
+  cursor:pointer;
+  transition:border-color 0.25s, color 0.25s, background 0.25s;
+}
+.blog-header-link:hover{
+  border-color:rgba(212,155,118,0.62);
+  color:#f0d4bf;
+  background:rgba(212,155,118,0.16);
+}
 .blog-reader{
   display:flex;flex-direction:column;gap:22px;
   max-width:520px;margin:0 auto;padding-top:8px;
 }
 .blog-card{
-  background:#222129;
-  border:1px solid #FFA86A;
+  background:#201b19;
+  border:1px solid rgba(212,155,118,0.36);
   border-radius:14px;
   padding:28px 26px;
   max-height:320px;overflow-y:auto;
   transition:border-color 0.3s, box-shadow 0.3s;
 }
-.blog-card:hover{box-shadow:0 0 20px rgba(255,168,106,0.12)}
+.blog-card:hover{box-shadow:0 0 20px rgba(212,155,118,0.14)}
 .blog-card::-webkit-scrollbar{width:3px}
 .blog-card::-webkit-scrollbar-track{background:transparent}
-.blog-card::-webkit-scrollbar-thumb{background:rgba(255,168,106,0.4);border-radius:3px}
+.blog-card::-webkit-scrollbar-thumb{background:rgba(212,155,118,0.36);border-radius:3px}
 .blog-card-title{
   font-family:'Fira Code',monospace;font-size:14px;font-weight:600;
-  color:#FFA86A;margin-bottom:8px;
+  color:#e9c8ae;margin-bottom:8px;
 }
 .blog-card-date{
   font-family:'Fira Code',monospace;font-size:10px;font-weight:400;
-  color:rgba(255,168,106,0.5);margin-bottom:16px;
+  color:rgba(212,155,118,0.62);margin-bottom:16px;
 }
 .blog-card-body{
   font-family:'Fira Code',monospace;font-size:12px;font-weight:400;
-  color:#FFA86A;line-height:1.6;
+  color:#ecd2bc;line-height:1.6;
 }
 .blog-card-body p{margin-bottom:12px}
 .blog-card-body h1,.blog-card-body h2,.blog-card-body h3{
   font-family:'Fira Code',monospace;font-size:12px;font-weight:600;
-  background:#FFA86A;color:#222129;
+  background:rgba(212,155,118,0.84);color:#1b1411;
   display:inline-block;padding:2px 6px;margin:16px 0 8px;
 }
-.blog-card-body strong{color:#FFA86A;font-weight:600}
+.blog-card-body strong{color:#d7a27e;font-weight:600}
 .blog-card-body ul,.blog-card-body ol{padding-left:18px;margin-bottom:12px}
 .blog-card-body li{margin-bottom:6px}
-.blog-card-body a{color:#FFA86A;text-decoration:underline}
+.blog-card-body a{color:#e0b08d;text-decoration:underline}
 .blog-card-body a:hover{opacity:0.75}
 .blog-card-body blockquote{
-  border-top:1px solid #FFA86A;border-bottom:1px solid #FFA86A;
+  border-top:1px solid rgba(212,155,118,0.62);border-bottom:1px solid rgba(212,155,118,0.62);
   padding:10px 0;margin:12px 0;font-style:italic;
 }
 .blog-loading{
   font-family:'Fira Code',monospace;font-size:11px;font-weight:400;
-  color:#FFA86A;text-align:center;opacity:0.5;padding:40px 0;
+  color:#d9aa86;text-align:center;opacity:0.55;padding:40px 0;
 }
 
 /* Contact page */
@@ -2087,6 +2140,25 @@ html,body{width:100%;height:100%;background:#00000a;overflow:hidden;cursor:defau
   .blog-reader{
     gap:14px;
   }
+  .blog-header{
+    margin-top:2px;
+    padding:12px 13px;
+    border-radius:12px;
+  }
+  .blog-header-kicker{
+    font-size:8px;
+    letter-spacing:1.2px;
+    margin-bottom:7px;
+  }
+  .blog-header-title{
+    font-size:14px;
+    margin-bottom:9px;
+  }
+  .blog-header-link{
+    font-size:9px;
+    padding:7px 9px;
+    letter-spacing:0.45px;
+  }
   .blog-card{
     padding:16px 14px;
     max-height:none;
@@ -3074,7 +3146,7 @@ const PLANETS = [
     bodyColor:0x8a2800, emissive:0x360600, emissiveInt:0.30,
     atmHex:0xe04e10, atmOpacity:0.28, roughness:0.58,
     ring:false,
-    pageGrad:['#100200','#260400','#380e00'], textCol:'#ffc080', accent:'#e86020',
+    pageGrad:['#060505','#100c0a','#191311'], textCol:'#ecd2bc', accent:'#c4875e',
     intro:'Recent Writings',
     body:'blog',
     tags:[]
@@ -3099,7 +3171,7 @@ const EXPERIENCE_ITEMS = [
     badge:'bp',
     brand:'BetterPlace',
     role:'Product Intern, Bangalore',
-    copy:"Worked on onboarding and workforce management problems inside a real product environment. I studied complex onboarding flows across organisations, identified reusable patterns for scale, and helped shape clearer product thinking around how teams learn and operate inside the platform.",
+    copy:"Worked across the skillBetter LMS, skills framework, and frontline onboarding. Shipped an interactive video feature and auto-content builder for Meesho that lifted DAUs by 11 percent, ran primary research with 700+ frontline workers to reshape the product roadmap, and led a skills-to-role mapping across NSQF and Singapore SSG that pushed course completions up by 6 percent.",
     meta:['Product Internship','Bangalore','Onboarding Systems','Product Thinking']
   },
   {
@@ -4824,16 +4896,21 @@ function openPage(idx) {
     ctx.fill();
   }
   pageBg.appendChild(cv);
-  document.getElementById('page-close').style.color = isBlog ? '#FFA86A' : p.textCol;
-  document.getElementById('page-close').style.borderColor = isBlog ? 'rgba(255,168,106,0.3)' : p.accent+'55';
+  document.getElementById('page-close').style.color = isBlog ? '#d8a27d' : p.textCol;
+  document.getElementById('page-close').style.borderColor = isBlog ? 'rgba(212,155,118,0.34)' : p.accent+'55';
 
   if (isBlog) {
     document.getElementById('page-inner').innerHTML = `
       <div class="pg-content">
-        <div class="pg-eyebrow" style="color:#FFA86A;font-family:'Fira Code',monospace">${p.tab}&nbsp;&nbsp;Â·&nbsp;&nbsp;${p.name}</div>
-        <div class="pg-title" style="color:#FFA86A;font-family:'Fira Code',monospace">${p.name}</div>
-        <div class="pg-divider" style="background:#FFA86A"></div>
-        <div class="pg-intro" style="color:rgba(255,168,106,0.7);font-family:'Fira Code',monospace">${p.intro}</div>
+        <div class="pg-eyebrow blog-eyebrow">${p.tab}&nbsp;&nbsp;Â·&nbsp;&nbsp;${p.name}</div>
+        <div class="pg-title blog-title">${p.name}</div>
+        <div class="pg-divider blog-divider"></div>
+        <div class="pg-intro blog-intro">${p.intro}</div>
+        <div class="blog-header">
+          <div class="blog-header-kicker">Writing Corner</div>
+          <h3 class="blog-header-title">I also write - here are some of my blogs.</h3>
+          <a class="blog-header-link" href="https://devvv.bearblog.dev" target="_blank" rel="noopener noreferrer">click to visit my blogs &#8599;</a>
+        </div>
         <div class="blog-reader" id="blog-reader">
           <div class="blog-loading">loading posts...</div>
         </div>
