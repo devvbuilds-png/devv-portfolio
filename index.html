@@ -1724,6 +1724,11 @@ html,body{width:100%;height:100%;background:#00000a;overflow:hidden;cursor:defau
     radial-gradient(circle at top right, rgba(255,214,107,0.16), transparent 34%),
     linear-gradient(180deg, rgba(35,25,8,0.95) 0%, rgba(14,11,8,0.98) 100%);
 }
+.showcase-card.sohail{
+  background:
+    radial-gradient(circle at top right, rgba(74,222,128,0.16), transparent 34%),
+    linear-gradient(180deg, rgba(10,28,20,0.96) 0%, rgba(8,14,14,0.98) 100%);
+}
 .showcase-head{
   display:flex;
   align-items:flex-start;
@@ -1791,6 +1796,11 @@ html,body{width:100%;height:100%;background:#00000a;overflow:hidden;cursor:defau
 .logo-mark.gdev{
   background:rgba(255,214,107,0.1);
   color:#ffd570;
+  font-size:15px;
+}
+.logo-mark.sohail{
+  background:rgba(74,222,128,0.12);
+  color:#8ef1a8;
   font-size:15px;
 }
 .logo-wordmark{
@@ -3221,6 +3231,18 @@ const PROJECT_ITEMS = [
     stack:['KYC Flow','AI Guidance','DigiLocker','Video KYC'],
     link:'https://gwdf66nwgjuak.mocha.app/',
     cta:'View prototype'
+  },
+  {
+    slug:'sohail',
+    type:'Live product',
+    name:'SohailCab',
+    badgeClass:'sohail',
+    badge:'SC',
+    tagline:'A focused ride coordination feed for a shared Manipal to Mangalore Airport route.',
+    body:"SohailCab is a lightweight ride coordination web app I built for Sohail, an independent cab driver running a fixed Manipal to Mangalore Airport route. Students at Manipal University frequently split the flat ₹1500 fare, but ride coordination was scattered across WhatsApp groups and word of mouth. I replaced that with a clean feed-based interface where Sohail posts rides and students claim seats in real time. No accounts, no heavy backend, just a focused tool that solves one problem well. Rides are booked on it every single day, with 20+ bookings already logged since launch.",
+    stack:['Live product','Feed UI','Real-time booking','Zero-auth'],
+    link:'#',
+    cta:'Visit SohailCab'
   },
   {
     slug:'gdev',
