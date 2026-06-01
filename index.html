@@ -1723,6 +1723,12 @@ html,body{width:100%;height:100%;background:#00000a;overflow:hidden;cursor:defau
     radial-gradient(circle at top right, rgba(255,143,111,0.18), transparent 34%),
     linear-gradient(180deg, rgba(34,15,34,0.96) 0%, rgba(12,8,23,0.98) 100%);
 }
+.showcase-card.seemara{
+  background:
+    radial-gradient(circle at top right, rgba(255,143,111,0.20), transparent 34%),
+    radial-gradient(circle at left bottom, rgba(136,80,232,0.18), transparent 36%),
+    linear-gradient(180deg, rgba(31,13,40,0.97) 0%, rgba(10,8,22,0.98) 100%);
+}
 .showcase-card.notecode{
   background:
     radial-gradient(circle at top right, rgba(147,113,255,0.16), transparent 32%),
@@ -1742,6 +1748,17 @@ html,body{width:100%;height:100%;background:#00000a;overflow:hidden;cursor:defau
   background:
     radial-gradient(circle at top right, rgba(74,222,128,0.16), transparent 34%),
     linear-gradient(180deg, rgba(10,28,20,0.96) 0%, rgba(8,14,14,0.98) 100%);
+}
+.showcase-card.allen{
+  background:
+    radial-gradient(circle at top right, rgba(70,154,255,0.16), transparent 34%),
+    linear-gradient(180deg, rgba(10,22,42,0.96) 0%, rgba(8,11,22,0.98) 100%);
+}
+.showcase-card.daycanvas{
+  background:
+    radial-gradient(circle at top right, rgba(255,204,83,0.14), transparent 34%),
+    radial-gradient(circle at left bottom, rgba(77,215,180,0.12), transparent 34%),
+    linear-gradient(180deg, rgba(28,25,14,0.96) 0%, rgba(9,13,18,0.98) 100%);
 }
 .showcase-head{
   display:flex;
@@ -1792,6 +1809,11 @@ html,body{width:100%;height:100%;background:#00000a;overflow:hidden;cursor:defau
   font-size:15px;
   padding:8px;
 }
+.logo-mark.seemara{
+  background:rgba(255,143,111,0.13);
+  color:#ffc0a8;
+  font-size:14px;
+}
 .logo-mark.kaizen svg{
   width:100%;
   height:100%;
@@ -1816,6 +1838,16 @@ html,body{width:100%;height:100%;background:#00000a;overflow:hidden;cursor:defau
   background:rgba(74,222,128,0.12);
   color:#8ef1a8;
   font-size:15px;
+}
+.logo-mark.allen{
+  background:rgba(70,154,255,0.12);
+  color:#91c5ff;
+  font-size:15px;
+}
+.logo-mark.daycanvas{
+  background:rgba(255,204,83,0.12);
+  color:#ffe08c;
+  font-size:13px;
 }
 .logo-wordmark{
   display:flex;
@@ -1882,8 +1914,59 @@ html,body{width:100%;height:100%;background:#00000a;overflow:hidden;cursor:defau
   text-transform:uppercase;
   color:#d7c4ff;
 }
+.subproject-list{
+  margin-top:18px;
+  display:grid;
+  gap:12px;
+}
+.subproject-card{
+  padding:15px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.035);
+}
+.subproject-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:8px;
+}
+.subproject-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:15px;
+  line-height:1.2;
+  color:#fff4ef;
+}
+.subproject-date{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:rgba(255,240,233,0.54);
+  flex-shrink:0;
+}
+.subproject-copy{
+  font-family:'Inter',sans-serif;
+  font-size:13px;
+  line-height:1.72;
+  color:rgba(239,231,255,0.68);
+}
+.subproject-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:11px;
+}
+.subproject-links .project-link{
+  padding:8px 11px;
+  font-size:9px;
+}
 .showcase-footer{
   margin-top:16px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
 }
 .project-link{
   display:inline-flex;
@@ -1907,12 +1990,6 @@ html,body{width:100%;height:100%;background:#00000a;overflow:hidden;cursor:defau
   background:rgba(136,80,232,0.14);
   border-color:rgba(180,137,255,0.4);
 }
-.project-link::after{
-  content:'?';
-  font-size:12px;
-  line-height:1;
-}
-
 @media(max-width:980px){
   .skills-hero-grid,
   .contact-hero-grid,
@@ -3132,6 +3209,7 @@ html,body{width:100%;height:100%;background:#00000a;overflow:hidden;cursor:defau
 #reset-view-btn:hover{background:rgba(0,200,255,0.14);border-color:rgba(0,220,255,0.5);color:rgba(0,220,255,0.9);}
 #reset-view-btn.hidden{opacity:0;pointer-events:none}
 #reset-view-btn.guide-blocked{opacity:0;pointer-events:none}
+#reset-view-btn.page-blocked{opacity:0 !important;pointer-events:none !important}
 
 @media(max-width:760px){
   #reset-view-btn,
@@ -3372,17 +3450,34 @@ const EXPERIENCE_ITEMS = [
 
 const PROJECT_ITEMS = [
   {
-    slug:'kaizen',
-    type:'AI knowledge system',
-    name:'Kaizen',
-    badgeClass:'kaizen',
-    badge:'K',
-    tagline:'A living knowledge base for products that learns, reasons, and explains.',
-    body:"Built solo as a full-stack product using an AI-augmented workflow. Kaizen starts from nothing and grows through conversation or document uploads until it can genuinely understand what a company builds. It does not just store context. It develops a point of view. A Learner agent draws knowledge out, an Explainer communicates it back clearly, and the Synthesizer forms its own narrative understanding of the product, who it serves, and why it wins.",
-    stack:['Node.js','Express','React','Supabase','OpenAI','Railway'],
-    extras:['Claude','Claude Code','Replit','Obsidian'],
-    link:'https://orchestral-ai-production.up.railway.app/',
-    cta:'Open live product'
+    slug:'seemara',
+    type:'Founder. Building in public.',
+    name:'Seemara',
+    badgeClass:'seemara',
+    badge:'SM',
+    tagline:'AI products studio, flagship product, and select client work built solo.',
+    body:"Building an AI products studio. Kaizen is my flagship product. Also take on select client work. I build the whole thing solo as a Vibecoder.",
+    stack:['AI Products Studio','Jan 2026','Solo Builder','Client Work'],
+    subprojects:[
+      {
+        title:'Kaizen.ai',
+        date:'Flagship product',
+        copy:'Betting that every AI company will need a living knowledge base that learns the product, forms context, and explains it back with a real point of view.',
+        links:[
+          {label:'Live', href:'https://orchestral-ai-production.up.railway.app/'},
+          {label:'What is Kaizen', href:'https://kaizen-docs.vercel.app'}
+        ]
+      },
+      {
+        title:'Divyakala LMS — Sole Technical Partner',
+        date:'Client build',
+        copy:'Vibe-coded a production LMS for a paying client. Real students, real money, one developer.',
+        links:[
+          {label:'LMS', href:'https://divyakala-lms.vercel.app'},
+          {label:'Client', href:'https://www.instagram.com/drdha_art/'}
+        ]
+      }
+    ]
   },
   {
     slug:'sohail',
@@ -3395,6 +3490,30 @@ const PROJECT_ITEMS = [
     stack:['Live product','Feed UI','Real-time booking','Zero-auth'],
     link:'#',
     cta:'Visit SohailCab'
+  },
+  {
+    slug:'allen-doubt-solver',
+    type:'Independent AI build',
+    name:'Allen Doubt Solver',
+    badgeClass:'allen',
+    badge:'AI',
+    tagline:"A multi-mode AI tutor prototype for Allen Digital's doubt-solving gap.",
+    body:"Identified a gap in Allen Digital's doubt-solving UX and prototyped a multi-mode AI tutor before they shipped it. Allen subsequently launched a similar feature in their live app.",
+    stack:['AI Tutor','UX Gap','Prototype','Market Timing'],
+    link:'https://allen-ai-doubtsolver.vercel.app',
+    cta:'Open prototype'
+  },
+  {
+    slug:'day-canvas',
+    type:'Independent AI build',
+    name:'Day Canvas',
+    badgeClass:'daycanvas',
+    badge:'DC',
+    tagline:'A daily planner fused with an infinite tldraw canvas.',
+    body:'Daily planner fused with an infinite tldraw canvas. Drag-to-schedule, stamp-the-day task resolution, whiteboard-to-todo bridge.',
+    stack:['tldraw','Planner','Infinite Canvas','Productivity'],
+    link:'https://day-canvas-nu.vercel.app',
+    cta:'Open Day Canvas'
   },
   {
     slug:'notecode',
@@ -3451,6 +3570,8 @@ let solarSelectedIdx = 0;
 let solarSelectionLocked = false;
 let lastSolarScrollAt = 0;
 let lastFocusedScrollAt = 0;
+let activePageIdx = -1;
+let pageOverlayToken = 0;
 
 const SOLAR_VIEW = { radius: 24, azimuth: -0.92, elevation: 0.34 };
 const SOLAR_TARGET_FOLLOW = 0.75;
@@ -4665,7 +4786,7 @@ function renderShowcaseLogo(item, compact = false) {
 }
 
 function renderProjectsPage() {
-  const featured = PROJECT_ITEMS.find(item => item.slug === 'kaizen') || PROJECT_ITEMS[0];
+  const featured = PROJECT_ITEMS.find(item => item.slug === 'seemara') || PROJECT_ITEMS[0];
   const githubHref = 'https://github.com/devvbuilds-png';
 
   const experienceMarkup = EXPERIENCE_ITEMS.map(item => `
@@ -4679,23 +4800,47 @@ function renderProjectsPage() {
     </article>
   `).join('');
 
-  const projectsMarkup = PROJECT_ITEMS.map(item => `
-    <article class="showcase-card ${item.badgeClass}" id="project-${item.slug}">
-      <div class="showcase-head">
-        ${renderShowcaseLogo(item)}
-        <span class="card-chip">${item.type}</span>
+  const projectsMarkup = PROJECT_ITEMS.map(item => {
+    const subprojectsMarkup = item.subprojects ? `
+      <div class="subproject-list">
+        ${item.subprojects.map(subproject => `
+          <div class="subproject-card">
+            <div class="subproject-head">
+              <div class="subproject-title">${subproject.title}</div>
+              <div class="subproject-date">${subproject.date}</div>
+            </div>
+            <div class="subproject-copy">${subproject.copy}</div>
+            <div class="subproject-links">
+              ${subproject.links.map(link => `<a class="project-link" href="${link.href}" target="_blank" rel="noreferrer">${link.label}</a>`).join('')}
+            </div>
+          </div>
+        `).join('')}
       </div>
-      <div class="showcase-tagline">${item.tagline}</div>
-      <div class="showcase-body">${item.body}</div>
-      <div class="showcase-meta">
-        ${item.stack.map(tag => `<span>${tag}</span>`).join('')}
-        ${(item.extras || []).map(tag => `<span>${tag}</span>`).join('')}
-      </div>
+    ` : '';
+    const footerLinks = item.links || (item.link ? [{label:item.cta, href:item.link}] : []);
+    const footerMarkup = footerLinks.length ? `
       <div class="showcase-footer">
-        <a class="project-link" href="${item.link}" target="_blank" rel="noreferrer">${item.cta}</a>
+        ${footerLinks.map(link => `<a class="project-link" href="${link.href}" target="_blank" rel="noreferrer">${link.label}</a>`).join('')}
       </div>
-    </article>
-  `).join('');
+    ` : '';
+
+    return `
+      <article class="showcase-card ${item.badgeClass}" id="project-${item.slug}">
+        <div class="showcase-head">
+          ${renderShowcaseLogo(item)}
+          <span class="card-chip">${item.type}</span>
+        </div>
+        <div class="showcase-tagline">${item.tagline}</div>
+        <div class="showcase-body">${item.body}</div>
+        ${subprojectsMarkup}
+        <div class="showcase-meta">
+          ${item.stack.map(tag => `<span>${tag}</span>`).join('')}
+          ${(item.extras || []).map(tag => `<span>${tag}</span>`).join('')}
+        </div>
+        ${footerMarkup}
+      </article>
+    `;
+  }).join('');
 
   return `
     <div class="projects-page">
@@ -4715,12 +4860,12 @@ function renderProjectsPage() {
       </section>
 
       <section class="projects-featured">
-        <button class="featured-jump" type="button" onclick="document.getElementById('project-kaizen').scrollIntoView({ behavior: 'smooth', block: 'start' });">
+        <button class="featured-jump" type="button" onclick="document.getElementById('project-seemara').scrollIntoView({ behavior: 'smooth', block: 'start' });">
           <div class="featured-jump-copy">
             <div class="featured-kicker">Top highlight</div>
-            <div class="featured-title">Kaizen</div>
-            <div class="featured-body">A living product knowledge base that learns through conversation and explains the product back with real context.</div>
-            <span class="featured-cta">Jump to Kaizen</span>
+            <div class="featured-title">Seemara</div>
+            <div class="featured-body">An AI products studio I am building in public, with Kaizen as the flagship product and Divyakala LMS as paid client work shipped solo.</div>
+            <span class="featured-cta">Jump to Seemara</span>
           </div>
           ${renderShowcaseLogo(featured)}
         </button>
@@ -5090,7 +5235,17 @@ function renderSkillsPage(skillsPlanet) {
   `;
 }
 
-function openPage(idx) {
+function closePageOverlay() {
+  pageOverlayToken += 1;
+  document.getElementById('page-overlay').classList.remove('open');
+  document.getElementById('reset-view-btn').classList.remove('page-blocked');
+  const old = document.getElementById('page-bg').querySelector('.blog-star-canvas');
+  if (old) old.remove();
+  activePageIdx = -1;
+}
+
+function openPage(idx, options = {}) {
+  const { pushHistory = true } = options;
   const p = PLANETS[idx];
   const isBlog = p.body === 'blog';
   const isHome = idx === 0;
@@ -5165,9 +5320,21 @@ function openPage(idx) {
     `;
   }
 
+  if (pushHistory && history.state?.portfolioPageIdx !== idx) {
+    history.pushState({ portfolioPageIdx: idx }, '', window.location.href);
+  }
+  activePageIdx = idx;
+  const openToken = ++pageOverlayToken;
+  document.getElementById('reset-view-btn').classList.add('page-blocked');
+
   const flash = document.getElementById('zoom-flash');
   flash.style.background = p.accent; flash.style.opacity = '0.1';
-  setTimeout(() => { flash.style.opacity = '0'; document.getElementById('page-overlay').classList.add('open'); }, 200);
+  setTimeout(() => {
+    flash.style.opacity = '0';
+    if (pageOverlayToken === openToken && activePageIdx === idx) {
+      document.getElementById('page-overlay').classList.add('open');
+    }
+  }, 200);
 }
 
 function fetchBlogPosts(planet) {
@@ -5436,9 +5603,18 @@ document.getElementById('solar-next-btn').addEventListener('click', () => {
 document.getElementById('astro-img').addEventListener('click', openGuideOverlay);
 document.getElementById('guide-close').addEventListener('click', closeGuideOverlay);
 document.getElementById('page-close').addEventListener('click', () => {
-  document.getElementById('page-overlay').classList.remove('open');
-  const old = document.getElementById('page-bg').querySelector('.blog-star-canvas');
-  if (old) old.remove();
+  if (history.state?.portfolioPageIdx === activePageIdx) {
+    history.back();
+  } else {
+    closePageOverlay();
+  }
+});
+window.addEventListener('popstate', (event) => {
+  if (event.state && Number.isInteger(event.state.portfolioPageIdx)) {
+    openPage(event.state.portfolioPageIdx, { pushHistory: false });
+  } else {
+    closePageOverlay();
+  }
 });
 
 const music = document.getElementById('bg-music');
